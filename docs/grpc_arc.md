@@ -25,7 +25,7 @@ The CertSecretName comes from the Secret Identifier generated after uploading th
 https://<VaultName>.vault.azure.net/secrets/<CertSecretName>/<Version>
 ```
 
-Make following changes in **Program.cs** to tell Kestrel only listen on HTTPS and tell it well to find the certificate.
+Make following changes in **Program.cs** to tell Kestrel only listen on HTTPS and tell it where to find the certificate.
 
 ```c#
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -50,7 +50,7 @@ static void ConfigureListen(ListenOptions listenOpt)
          listenOpt.UseHttps(new X509Certificate2(Convert.FromBase64String(cert)));
 }
 ```
-Please note that we are fetch the certificate as a secret, rather than a certificate. It's because if you fetch it as certificate, it won't contain the private key part. Here's a nice article explains this:
+Please note that we are fetching the certificate as a secret, rather than a certificate. It's because if you fetch it as certificate, it won't contain the private key part. Here's a nice article explains this:
 
 [https://azidentity.azurewebsites.net/post/2018/07/03/azure-key-vault-certificates-are-secrets](https://azidentity.azurewebsites.net/post/2018/07/03/azure-key-vault-certificates-are-secrets)
 
