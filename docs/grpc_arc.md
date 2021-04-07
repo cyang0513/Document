@@ -64,7 +64,7 @@ Now we basically have everthing to support the Grpc service to run. You can now 
 docker push ACR_NAME.azurecr.io/YOUR_GRPC_IMAGE:Tag
 ```
 
-Once it's done, you can bring up a container instance via Container instances, with FQDN FQDN: **xxxx.xxxx.azurecontainer.io**
+Once it's done, you can bring up a container instance via Container instances, with FQDN: **xxxx.xxxx.azurecontainer.io**
 
 You can also automate this part by Azure CLI or powershell.
 
@@ -85,7 +85,9 @@ Run the client, you should be able to access the Grpc services running in Azure 
 
 Please note now the client shows the server is running on a Unix box, as the container is a Linux one. And the server name is **SandboxHost-637533984997355234**
 
-You can find the source code of the Grpc service here: [ChyaGrpcSvr](https://github.com/cyang0513/ChyaGrpcSvr)
+So now you have a Grpc service running in Azure and you can start build things around it. ;)
+
+You can find the source code of the Grpc service and client here: [GrpcSvc](https://github.com/cyang0513/ChyaGrpcSvr) [GrpcClient](https://github.com/cyang0513/ChyaGrpcClient)
 
 
 
