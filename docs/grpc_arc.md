@@ -7,7 +7,7 @@ We want to manage the server side SSL certificate for Grpc service in a central 
 
 Note that once it's uploaded, it will generate a Secret Identifier and a Key Identifier for the same certificate version.
 
-<img src="../img/kv-cert.png" width="535" height="390">
+<img src="https://github.com/cyang0513/Document/blob/main/img/kv-cert.png?raw=true" width="535" height="390">
 
 ## Configure Kestrel
 It's more convenient to configure Kestrel in code than in appsettings.json. Especially if you want to take advantage of Azure App Configuration and Azure Key Vault.
