@@ -1,4 +1,4 @@
-# Host ASP.NET Core Grpc service via Azure Container Registry
+# Hosting ASP.NET Core Grpc service via Azure Container Registry
 
 Recently I've been looking into running ASP.NET Core Grpc service on Azure. Sadly Azure App Service does not support hosting Grpc service [at this moment](https://feedback.azure.com/forums/169385-web-apps/suggestions/40585333-grpc-support-in-azure-app-service) and Azure VM is not what I'm looking for neither. So the option I have is to containerized the Grpc service and host it via Azure Container Registry and run it with Container Instances.
 

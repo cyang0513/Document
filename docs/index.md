@@ -1,1 +1,1 @@
-## [Host ASP.NET Core Grpc service via Azure Container Registry](grpc_arc.md)
+## [Hosting ASP.NET Core Grpc service via Azure Container Registry](grpc_arc.md)
