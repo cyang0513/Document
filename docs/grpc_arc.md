@@ -52,7 +52,7 @@ static void ConfigureListen(ListenOptions listenOpt)
 ```
 Please note that we are fetch the certificate as a secret, rather than a certificate. It's because if you fetch it as certificate, it won't contain the private key part. Here's a nice article explains this:
 
-https://azidentity.azurewebsites.net/post/2018/07/03/azure-key-vault-certificates-are-secrets
+[https://azidentity.azurewebsites.net/post/2018/07/03/azure-key-vault-certificates-are-secrets](https://azidentity.azurewebsites.net/post/2018/07/03/azure-key-vault-certificates-are-secrets)
 
 Alternatively, you can setup Kestrel to use HTTP during development and only HTTPS when it's deployed to test or product. 
 
@@ -72,7 +72,7 @@ You can also automate this part by Azure CLI or powershell.
 Since we are storing the certificate in Key Vault, so you need to assign the managed identity to the container, and also assign the permission of reading from Key Vault secret to it. You can decide to use System assigned or User assigned Identity based on your scenario. (Currently Managed Identity for Container is under preview)
 
 Now all the setup is done. Bring up the container instance, go to Logs, you should be able to see your ASP.NET Core Grpc service is running.
-<img src="../img/grpc_container.png">
+<img src="https://github.com/cyang0513/Document/blob/main/img/grpc_container.png?raw=true">
 
 ## Setup the Grpc Client
 In your Grpc client, establish the channel against the container FQDN
@@ -81,11 +81,11 @@ using var channel = GrpcChannel.ForAddress(@"https://xxxx.xxxx.azurecontainer.io
 var client = new TestService.TestServiceClient(channel);
 ```
 Run the client, you should be able to access the Grpc services running in Azure container instances.
-<img src="../img/grpc_client.PNG">
+<img src="https://github.com/cyang0513/Document/blob/main/img/grpc_client.PNG?raw=true">
 
 Please note now the client shows the server is running on a Unix box, as the container is a Linux one. And the server name is **SandboxHost-637533984997355234**
 
-You can find the source code of the Grpc service here: https://github.com/cyang0513/ChyaGrpcSvr
+You can find the source code of the Grpc service here: [ChyaGrpcSvr](https://github.com/cyang0513/ChyaGrpcSvr)
 
 
 
