@@ -80,10 +80,12 @@ In your Grpc client, establish the channel against the container FQDN
 using var channel = GrpcChannel.ForAddress(@"https://xxxx.xxxx.azurecontainer.io:5001");
 var client = new TestService.TestServiceClient(channel);
 ```
-Run the client, you should be able to access the services running in Azure container instances.
+Run the client, you should be able to access the Grpc services running in Azure container instances.
 <img src="../img/grpc_client.PNG">
 
 Please note now the client shows the server is running on a Unix box, as the container is a Linux one. And the server name is **SandboxHost-637533984997355234**
+
+You can find the source code of the Grpc service here: https://github.com/cyang0513/ChyaGrpcSvr
 
 
 
