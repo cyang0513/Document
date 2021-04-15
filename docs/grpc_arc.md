@@ -1,9 +1,9 @@
-# Hosting ASP.NET Core Grpc service via Azure Container Registry
+# Hosting ASP.NET Core gRpc service via Azure Container Registry
 
-Recently I've been looking into running ASP.NET Core Grpc service on Azure. Sadly Azure App Service does not support hosting Grpc service [at this moment](https://feedback.azure.com/forums/169385-web-apps/suggestions/40585333-grpc-support-in-azure-app-service) and Azure VM is not what I'm looking for neither. So the option I have is to containerized the Grpc service and host it via Azure Container Registry and run it with Container Instances.
+Recently I've been looking into running ASP.NET Core gRpc service on Azure. Sadly Azure App Service does not support hosting  gRpc service [at this moment](https://feedback.azure.com/forums/169385-web-apps/suggestions/40585333-grpc-support-in-azure-app-service) and Azure VM is not what I'm looking for neither. So the option I have is to containerized the  gRpc service and host it via Azure Container Registry and run it with Container Instances.
 
 ## Manage SSL Certificate
-We want to manage the server side SSL certificate for Grpc service in a central place, so Azure Key Vault is an idea choice. Make sure you have the **pfx** format certificate and upload it to your key vault certificates. Assuming the Subject is matching to the container FQDN: **xxxx.xxxx.azurecontainer.io**
+We want to manage the server side SSL certificate for gRpc service in a central place, so Azure Key Vault is an idea choice. Make sure you have the **pfx** format certificate and upload it to your key vault certificates. Assuming the Subject is matching to the container FQDN: **xxxx.xxxx.azurecontainer.io**
 
 Note that once it's uploaded, it will generate a Secret Identifier and a Key Identifier for the same certificate version.
 
@@ -58,7 +58,7 @@ Alternatively, you can setup Kestrel to use HTTP during development and only HTT
 
 ## Push the Image
 
-Now we basically have everthing to support the Grpc service to run. You can now build the docker image of the service and push it to your Azure Container Registry.
+Now we basically have everthing to support the gRpc service to run. You can now build the docker image of the service and push it to your Azure Container Registry.
 
 ```bash
 docker push ACR_NAME.azurecr.io/YOUR_GRPC_IMAGE:Tag
@@ -71,21 +71,21 @@ You can also automate this part by Azure CLI or powershell.
 ## Enable Managed Identity for Container
 Since we are storing the certificate in Key Vault, so you need to assign the managed identity to the container, and also assign the permission of reading from Key Vault secret to it. You can decide to use System assigned or User assigned Identity based on your scenario. (Currently Managed Identity for Container is under preview)
 
-Now all the setup is done. Bring up the container instance, go to Logs, you should be able to see your ASP.NET Core Grpc service is running.
+Now all the setup is done. Bring up the container instance, go to Logs, you should be able to see your ASP.NET Core  gRpc service is running.
 <img src="https://github.com/cyang0513/Document/blob/main/img/grpc_container.png?raw=true">
 
-## Setup the Grpc Client
-In your Grpc client, establish the channel against the container FQDN
+## Setup the gRpc Client
+In your gRpc client, establish the channel against the container FQDN
 ```c#
 using var channel = GrpcChannel.ForAddress(@"https://xxxx.xxxx.azurecontainer.io:5001");
 var client = new TestService.TestServiceClient(channel);
 ```
-Run the client, you should be able to access the Grpc services running in Azure container instances.
+Run the client, you should be able to access the gRpc services running in Azure container instances.
 <img src="https://github.com/cyang0513/Document/blob/main/img/grpc_client.PNG?raw=true">
 
 Please note now the client shows the server is running on a Unix box, as the container is a Linux one. And the server name is **SandboxHost-637533984997355234**
 
-You can find the source code of the Grpc service here: [ChyaGrpcSvr](https://github.com/cyang0513/ChyaGrpcSvr)
+You can find the source code of the gRpc service here: [ChyaGrpcSvr](https://github.com/cyang0513/ChyaGrpcSvr)
 
 
 
