@@ -1,12 +1,12 @@
-# Build gRpc client with .Net Framework 4.8 by using gRPC C# core
+# Build gRPC client with .Net Framework 4.8 by using gRPC C# core
 
-ASP.Net Core gRpc is handy for building service, but if the client is built on .Net Framework, you need to have some extra configuration on the client side to access the service.
+ASP.Net Core gRPC is handy for building service, but if the client is built on .Net Framework, you need to have some extra configuration on the client side to access the service.
 
 There's an article from Microsoft to explain this: [Use gRPC client with .NET Standard 2.0](https://docs.microsoft.com/en-us/aspnet/core/grpc/netstandard?view=aspnetcore-5.0#net-framework)
 
 So according to the article, for client that are built on .Net Framework, either you use WinHttpHandler or gRPC C# core-library. The solution with WinHttpHandler is simple but with some limitations.
 
-The following is to discuss how to use gRPC C# core-library to realize the goal.
+The following is to discuss how to use [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/) to realize the goal.
 
 ### Setup Reference
 Add the following reference to client via NuGet
