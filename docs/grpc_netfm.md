@@ -1,4 +1,4 @@
-# Build gRpc client with .Net Framework 4.8 by using with gRPC C# core
+# Build gRpc client with .Net Framework 4.8 by using gRPC C# core
 
 ASP.Net Core gRpc is handy for building service, but if the client is built on .Net Framework, you need to have some extra configuration on the client side to access the service.
 
